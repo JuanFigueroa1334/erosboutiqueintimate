@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('./assets/fonts/CormorantGaramond-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background-color: #fff4f4;
+}
+.font-bold{
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.bg-rosado-envio {
+  background: linear-gradient(90deg, #884543, #c88b7f,#eac0b6, #c88b7f,#884543);
+}
+.bg-rosado-subcategoria {
+  background: linear-gradient(90deg, #c88b7f,#eac0b6, #c88b7f);
+}
+.bg-rosado-hover-sub:hover {
+  background: #c88b7f;
+}
+.textBoldHover:hover{
+  font-weight: bold;
+}
+.bg-color-rosado{
+  background-color: #fff4f4;
+}
+.styleFooter{
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+.containerPopup{
+  width: 480px;
+  height: 350px;
+  background-image: url(assets/img/logo_v2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.menu-categorias{
+  font-size: 20px;
+  border-right: 1px solid #884543;
+}
+.text-cate{
+  color: #000404;
+}
+.text-cate:hover{
+  color: #9b6764;
+}
+.border-r-25{
+  border-radius: 25px;
+}
+.container-style{
+  padding: 3% 5px;
+}
+.p-shop{
+  padding:  4rem 1rem;
+}
+.tituloFiltro{
+  font-size: 20px;
+  font-family: 'Cormorant Garamond', serif;
+}
