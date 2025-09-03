@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import Banner from './components/Banner/Banner.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Popup from './components/Popup/Popup.jsx';
-import Home from './pages/home.jsx';
+import Home from './pages/Home.jsx';
 import Shop from './pages/shop.jsx';
 import AOS from "aos";
 import 'aos/dist/aos.css';
