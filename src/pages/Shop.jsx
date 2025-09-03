@@ -16,7 +16,7 @@ const sampleProducts = [
   { id: 6, name: 'Anillo Vibrador', category:'', description: 'Para intensificar el placer en pareja.', price: 39.99, image: 'https://via.placeholder.com/200x250?text=Anillo+Vibrador' },
 ];
 
-const Shop = ({ searchTerm }  ) => {
+const shop = ({ searchTerm }  ) => {
   
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -133,4 +133,4 @@ const Shop = ({ searchTerm }  ) => {
   );
 };
 
-export default Shop;
+export default shop;
