@@ -1,12 +1,12 @@
 import React,  { useState }from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
-import Navbar from './components/Navbar/navbar';
-import Banner from './components/banner/Banner';
-import Footer from './components/Footer/Footer';
-import Popup from './components/Popup/Popup';
-import Home from './pages/home';
-import Shop from './pages/shop';
+import Navbar from './components/Navbar/navbar.jsx';
+import Banner from './components/banner/Banner.jsx';
+import Footer from './components/Footer/Footer.jsx';
+import Popup from './components/Popup/Popup.jsx';
+import Home from './pages/home.jsx';
+import Shop from './pages/shop.jsx';
 import AOS from "aos";
 import 'aos/dist/aos.css';
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import Banner from '../components/banner/Banner'
-import Producthomeone from '../components/Producthomeone/Producthomeone'
-import ProductsShowcase from '../components/ProductHomeShowCase/ProductHomeShowCase'
-import ProductAlbumLayout from '../components/ProductAlbumLayout/ProductAlbumLayout'
+import Banner from '../components/banner/Banner.jsx'
+import Producthomeone from '../components/Producthomeone/Producthomeone.jsx'
+import ProductsShowcase from '../components/ProductHomeShowCase/ProductHomeShowCase.jsx'
+import ProductAlbumLayout from '../components/ProductAlbumLayout/ProductAlbumLayout.jsx'
 
 const home = () => {
   return (
