@@ -95,7 +95,7 @@ const DropdownLinks = [
     link: "/#",
   },
 ];
-const navbar = ({setSearchTerm}) => {
+const Navbar = ({setSearchTerm}) => {
   const navigate = useNavigate();
   const handleSearch = (e) => {
     if (e.key === "Enter") {
@@ -158,4 +158,4 @@ const navbar = ({setSearchTerm}) => {
   )
 }
 
-export default navbar
+export default Navbar;

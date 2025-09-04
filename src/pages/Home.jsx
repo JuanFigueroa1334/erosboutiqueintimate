@@ -4,7 +4,7 @@ import Producthomeone from '../components/Producthomeone/Producthomeone.jsx'
 import ProductsShowcase from '../components/ProductHomeShowCase/ProductHomeShowCase.jsx'
 import ProductAlbumLayout from '../components/ProductAlbumLayout/ProductAlbumLayout.jsx'
 
-const home = () => {
+const Home = () => {
   return (
     <div>
         <Banner/>
@@ -15,4 +15,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home
