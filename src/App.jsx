@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Popup from './components/Popup/Popup.jsx';
 import Home from './pages/Home.jsx';// Asegúrate de renombrar el archivo con mayúscula
-import Shop from './pages/shop.jsx';
+import Store from './pages/Store.jsx'; 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -40,7 +40,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/shop" element={<Shop searchTerm={searchTerm}/>} />
+      <Route path="/store" element={<Store searchTerm={searchTerm}/>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
     <Footer />
