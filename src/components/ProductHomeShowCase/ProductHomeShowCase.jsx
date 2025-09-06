@@ -2,23 +2,33 @@ import React, { useState } from "react";
 import Img1 from "../../assets/img/imgsHome/img-setintimo-1.jpeg";
 import Img2 from "../../assets/img/imgsHome/img-setintimo-2.jpeg";
 import Img3 from "../../assets/img/imgsHome/img-setintimo-3.jpeg";
+import bondage_1 from "../../assets/img/imgsHome/bondage_1.webp";
+import bondage_2 from "../../assets/img/imgsHome/bondage_2.webp";
+import bondage_3 from "../../assets/img/imgsHome/bondage_3.webp";
+import Imgsldr1 from "../../assets/img/imgsHome/img-sldr-1.png";
+import Imgsldr2 from "../../assets/img/imgsHome/img-sldr-2.png";
+import Imgsldr3 from "../../assets/img/imgsHome/img-sldr-3.png";
+import Imgsldr4 from "../../assets/img/imgsHome/img-sldr-4.png";
+import Imgsldr5 from "../../assets/img/imgsHome/img-sldr-5.webp";
 const products = [
   {
     name: "Lencerias",
     description: "Este es el primer producto con una breve.",
     images: [
-      Img1,
-      Img2,
-      Img3,
+      bondage_1,
+      bondage_2,
+      bondage_3,
     ],
   },
   {
     name: "Vibradores",
     description: "Este es el segundo producto con una breve descripción.",
     images: [
-      "https://via.placeholder.com/300x200?text=Producto+2+Imagen+1",
-      "https://via.placeholder.com/300x200?text=Producto+2+Imagen+2",
-      "https://via.placeholder.com/300x200?text=Producto+2+Imagen+3",
+      Imgsldr1,
+      Imgsldr2,
+      Imgsldr3,
+      Imgsldr4,
+      Imgsldr5
     ],
   },
 ];
@@ -37,11 +47,11 @@ const ProductSlider = ({ product }) => {
     <div className="bg-white text-center shadow-lg rounded-xl p-4 w-full md:w-1/2">
       <h2 className="text-xl font-bold mb-2">{product.name}</h2>
       <p className="text-gray-600 mb-4">{product.description}</p>
-      <div className="relative w-full h-56 mb-4">
+      <div className="relative contimg w-full h-56 mb-4">
         <img
           src={product.images[currentImage]}
           alt={`Imagen ${currentImage + 1}`}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-cover rounded-lg img100"
         />
         <button
           onClick={prevImage}

@@ -49,7 +49,7 @@ const Menu = [
     name: "Juguetes",
     link: "/store?category=Juguetes",
      subcategories: [
-      { name: "Vidradores", link: "/store?subcategory=sexo-oral" },
+      { name: "Vidradores", link: "/store?subcategory=Vibradores" },
       { name: "Vidradores A control remoto", link: "/store?subcategory=vibradores-control-remoto" },
       { name: "Estimuladores Clitoriales", link: "/store?subcategory=estimuladores-clitoriales" },
       { name: "Electroestimulación", link: "/store?subcategory=Electroestimulacion" },
@@ -100,7 +100,7 @@ const Navbar = ({setSearchTerm}) => {
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       setSearchTerm(e.target.value);
-      navigate("/shop");
+      navigate("/store");
     }
   };
   return (

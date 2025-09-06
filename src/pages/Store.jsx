@@ -1,43 +1,75 @@
 import { useLocation } from "react-router-dom";
 import React, { useState, useEffect  } from 'react';
+//categoria sexo-oral
 import Img1 from "../assets/img/CategoriasProduct/sexo-oral/cherry.webp";
 import Img2 from "../assets/img/CategoriasProduct/sexo-oral/concha.webp";
 import Img3 from "../assets/img/CategoriasProduct/sexo-oral/garganta-sen-intimo.jpg";
 import Img4 from "../assets/img/CategoriasProduct/sexo-oral/gomas.webp";
 import Img5 from "../assets/img/CategoriasProduct/sexo-oral/sen-intimo.jpg";
 
+
 // Ejemplo de productos (puedes ampliar esta lista)
 const sampleProducts = [
-  { id: 1, name: 'Lencería Roja Sexy', category:'Lubricantes', subcategory:'sexo-oral', description: 'Conjunto sensual de encaje rojo, talla única.', price: 149.99, image: Img1 },
-  { id: 2, name: 'Vibrador Clásico', category:'Lubricantes', subcategory:'sexo-oral', description: 'Vibrador de silicona premium, 7 velocidades.', price: 89.90, image: Img2 },
-  { id: 3, name: 'Aceite de Masaje', category:'Lubricantes', subcategory:'sexo-oral', description: 'Aceite comestible con aroma a vainilla.', price: 29.50, image: Img3 },
-  { id: 4, name: 'Plug Anal Básico', category:'Lubricantes', subcategory:'sexo-oral', description: 'Juguete ergonómico para principiantes.', price: 49.99, image: Img4 },
-  { id: 5, name: 'Body de Encaje Negro', category:'Lubricantes', subcategory:'sexo-oral', description: 'Elegancia y sensualidad combinadas.', price: 119.00, image: Img5 },
-  { id: 6, name: 'Anillo Vibrador', category:'', description: 'Para intensificar el placer en pareja.', price: 39.99, image: 'https://via.placeholder.com/200x250?text=Anillo+Vibrador' },
+    //categoria sexo-oral
+    { id: 1, name: 'Gummies Vi King Cherry', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
+    price: '30.000', image: Img1 },
+    { id: 2, name: 'Concha Gummies Vi King', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
+    price: '10.000', image: Img2 },
+    { id: 3, name: 'Garganta Profunda Desensibilizante para Sexo Oral x 15 ml by Sen întimo', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
+    price: '36.900', image: Img3 },
+    { id: 4, name: 'Anillos Donas x 3 Ud Gummies Vi King Cherry', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
+    price: '30.000', image: Img4 },
+    { id: 5, name: 'Chocolate Body Paint x 30 ml by Sen Intimo', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
+    price: '25.900', image: Img5 },
+     //categoria saborizados
+    { id: 1, name: 'Lubricante Íntimo Cafe Moka Sensación Caliente x 30 ml by Sen Íntimo', category:'Lubricantes', subcategory:'saborizados', description: '', 
+    price: '24.900', image: Img1 },
+    { id: 1, name: '', category:'Lubricantes', subcategory:'saborizados', description: '', 
+    price: '24.900', image: Img1 },
+    
+  
 ];
+
 
 const Store = ({ searchTerm }  ) => {
   
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const selectedCategory = queryParams.get("category");
+  const selectedSubCategory = queryParams.get("subcategory");
 
   useEffect(() => {
-    if (selectedCategory) {
-      setFilter(selectedCategory);
-    } else if (searchTerm) {
-      setFilter(searchTerm);
+     if (searchTerm && !selectedCategory && !selectedSubCategory) {
+        setFilter(searchTerm);
+    } else {
+        setFilter("");
     }
-  }, [selectedCategory, searchTerm]);
+  }, [selectedCategory, selectedSubCategory, searchTerm]);
 
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 10;
 
-  const filteredProducts = sampleProducts.filter(product =>
-    (filter ? product.category?.toLowerCase().includes(filter.toLowerCase()) : true) ||
-    product.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredProducts = sampleProducts.filter(product => {
+    // Filtrado por categoría
+    const matchCategory = selectedCategory 
+        ? product.category?.toLowerCase() === selectedCategory.toLowerCase()
+        : true;
+
+    // Filtrado por subcategoría
+    const matchSubcategory = selectedSubCategory 
+        ? product.subcategory?.toLowerCase() === selectedSubCategory.toLowerCase()
+        : true;
+
+    // Filtrado por búsqueda libre
+    const matchSearch = filter
+        ? product.name.toLowerCase().includes(filter.toLowerCase()) ||
+        product.description.toLowerCase().includes(filter.toLowerCase())
+        : true;
+
+    return matchCategory && matchSubcategory && matchSearch;
+    });
+
 
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -53,7 +85,7 @@ const Store = ({ searchTerm }  ) => {
   return (
     <div className="p-shop pt-5 bg-white min-h-screen bg-color-rosado">
       <div className="container pb-8">
-        <h2 className="tituloFiltro">Tu filtro: {searchTerm}</h2>
+        <h2 className="tituloFiltro">Tu filtro: {selectedCategory || selectedSubCategory || searchTerm || "Todos"}</h2>
       </div>
       <div className="container mx-auto flex flex-col sm:flex-row gap-6">
         
@@ -88,7 +120,7 @@ const Store = ({ searchTerm }  ) => {
                 <div className="mb-2">
                   <h1 className="text-lg font-bold">{product.name}</h1>
                   <p className="text-sm text-gray-600">{product.description}</p>
-                  <p className="text-md font-semibold mt-2 text-red-600">${product.price.toFixed(2)}</p>
+                  <p className="text-md font-semibold mt-2 text-red-600">${product.price}</p>
                 </div>
                 <button className="mt-auto bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition">
                   Agregar al carrito

@@ -30,8 +30,6 @@ const App = () => {
         setOrderPopup(false);
       }, 3000);
     }
-
-    document.title = "Mi App"; 
   }, []);
 
   return (
