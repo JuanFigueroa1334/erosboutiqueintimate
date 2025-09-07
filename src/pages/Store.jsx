@@ -85,8 +85,9 @@ const Store = ({ searchTerm }  ) => {
 
   return (
     <div className="p-shop pt-5 bg-white min-h-screen bg-color-rosado">
-      <div className="container pb-8">
+      <div className="container pb-8 flex divspace-between">
         <h2 className="tituloFiltro">Tu filtro: {selectedCategory || selectedSubCategory || searchTerm || "Todos"}</h2>
+        <a href="/store">Ver todos los productos</a>
       </div>
       <div className="container mx-auto flex flex-col sm:flex-row gap-6">
         
