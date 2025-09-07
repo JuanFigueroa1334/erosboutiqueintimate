@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import React, { useState, useEffect  } from 'react';
+import { useCart } from "../context/CartContext";
 //categoria sexo-oral
 import Img1 from "../assets/img/CategoriasProduct/sexo-oral/cherry.webp";
 import Img2 from "../assets/img/CategoriasProduct/sexo-oral/concha.webp";
@@ -32,7 +33,7 @@ const sampleProducts = [
 
 
 const Store = ({ searchTerm }  ) => {
-  
+  const { addToCart } = useCart();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const selectedCategory = queryParams.get("category");
@@ -122,8 +123,12 @@ const Store = ({ searchTerm }  ) => {
                   <p className="text-sm text-gray-600">{product.description}</p>
                   <p className="text-md font-semibold mt-2 text-red-600">${product.price}</p>
                 </div>
-                <button className="mt-auto bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition">
-                  Agregar al carrito
+                
+                <button
+                onClick={() => addToCart(product)}
+                className="mt-auto bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition"
+                >
+                Agregar al carrito
                 </button>
               </div>
             ))}

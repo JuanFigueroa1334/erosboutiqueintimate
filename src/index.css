@@ -76,3 +76,6 @@ body {
 .imgunset{
   object-fit: unset;
 }
+.divspace-between{
+  justify-content: space-between;
+}

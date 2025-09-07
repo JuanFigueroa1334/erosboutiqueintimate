@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState } from "react"; 
+import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo_v4.png"
+import { useCart } from "../../context/CartContext";
 import { useNavigate } from 'react-router-dom';
-const Menu = [
+import { ShoppingBag, ShoppingCart } from "lucide-react";
+import { Menu, X } from "lucide-react";
+
+const MenuData = [
   {
     id: 1,
     name: "Home",
@@ -72,7 +77,7 @@ const Menu = [
   },
 
   {
-    id: 6,
+    id: 7,
     name: "Bienestar-sexual",
     link: "/store?category=Bienestar-sexual",
   },
@@ -96,6 +101,8 @@ const DropdownLinks = [
   },
 ];
 const Navbar = ({setSearchTerm}) => {
+  const { cart } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleSearch = (e) => {
     if (e.key === "Enter") {
@@ -112,20 +119,40 @@ const Navbar = ({setSearchTerm}) => {
         </div>
         {/*upper navbar*/}
         <div className="">
-            <div className="flex container justify-between items-center">
-                <div>
+            <div className="flex flex-col md:flex-row container justify-between items-center">
+                <div className="grid grid-cols-1">
                     <a href="/" className='flex font-bold text-2xl sm:text-3xl gap-2 items-center'>
                         <img src={Logo} alt="Logo" className="font-bold h-16" />
                         EROS INTIMATE
                     </a>
                 </div>
                 {/* buqueda*/}
-                <div>
-                    <div className="group">
-                        <input type="text"
-                         placeholder="Buscar..."
-                         onKeyDown={handleSearch}
-                         className="w-[200px] sm:w-[200px] group-hover:w-[300px] border rounded-full border-gray-300 focus:outline-none focus:border-primary focus:border-1 focus:border-1 px-2 py-1 "/>
+                <div className="grid grid-cols-1">
+                    <div className="md:flex md:items-center md:gap-3 md:justify-between">
+                      <input type="text"
+                      placeholder="Buscar..."
+                      onKeyDown={handleSearch}
+                      className="w-[200px] sm:w-[200px] group-hover:w-[300px] border rounded-full border-gray-300 focus:outline-none focus:border-primary focus:border-1 focus:border-1 px-2 py-1 "/>
+                      <div className="group flex items-center gap-3 divspace-between">
+                        <Link to="/store">
+                          <ShoppingBag size={24} />
+                        </Link>
+                        <Link to="/cart" className="relative">
+                          <ShoppingCart size={24} />
+                          {cart.length > 0 && (
+                            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+                              {cart.length}
+                            </span>
+                          )}
+                        </Link>
+                        {/* Botón hamburguesa (solo en móviles) */}
+                        <button
+                          className="sm:hidden block"
+                          onClick={() => setIsOpen(!isOpen)}
+                        >
+                          {isOpen ? <X size={28} /> : <Menu size={28} />}
+                        </button>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -133,7 +160,7 @@ const Navbar = ({setSearchTerm}) => {
         {/*lower navbar*/}
         <div data-aos="zoom-in" className="flex justify-center">
           <ul className="sm:flex hidden items-center gap-4">
-            {Menu.map((data) => (
+            {MenuData.map((data) => (
               <li key={data.id} className=" relative group py-2 ">
                 <a href={data.link} className="inline-block px-4 text-cate duration-200 menu-categorias">
                     {data.name}
@@ -142,7 +169,7 @@ const Navbar = ({setSearchTerm}) => {
                 {data.subcategories && (
                   <ul className="absolute left-0 top-full hidden bg-rosado-subcategoria group-hover:block bg-white shadow-lg rounded-md min-w-[180px] z-50">
                     {data.subcategories.map((sub, index) => (
-                      <li key={index} className="px-4 py-2 bg-rosado-hover-sub">
+                      <li key={`${data.id}-${index}`} className="px-4 py-2 bg-rosado-hover-sub">
                         <a href={sub.link} className="block textBoldHover">
                           {sub.name}
                         </a>
@@ -153,6 +180,45 @@ const Navbar = ({setSearchTerm}) => {
               </li>
             ))} 
           </ul>
+
+          {/* Menú móvil desplegable */}
+          {isOpen && (
+            <div className="absolute top-16 left-0 w-full bg-white shadow-lg sm:hidden">
+              <ul className="flex flex-col p-4">
+                {MenuData.map((data) => (
+                  <li key={data.id} className="py-2 border-b">
+                    <details>
+                      <summary
+                        className="cursor-pointer font-medium list-none flex justify-between items-center"
+                        onClick={(e) => {
+                          const details = e.currentTarget.parentElement;
+
+                          // Si ya está abierto, permite redirigir
+                          if (details.open || data.id == 1) {
+                            window.location.href = data.link; // ✅ redirección
+                          } else {
+                            e.preventDefault(); // ✅ evita navegar en el primer clic
+                            details.open = true; // ✅ abre el menú
+                          }
+                        }}
+                      >
+                        {data.name}
+                      </summary>
+                      {data.subcategories && (
+                        <ul className="pl-4">
+                          {data.subcategories.map((sub, index) => (
+                            <li key={`${data.id}-${index}`} className="py-1">
+                              <a href={sub.link}>{sub.name}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </details>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
     </div>
   )

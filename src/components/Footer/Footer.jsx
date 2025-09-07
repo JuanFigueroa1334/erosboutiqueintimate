@@ -11,39 +11,27 @@ const StyleFooter = {
     color:'#fff',
 }
 const FooterLinks = [
-    {
-        title: "Tienda",
-        link: "/#"
-    },
-    {
-        title: "Categorias",
-        link: "/#"
-    },
-    {
-        title: "Nosotros",
-        link: "/#"
-    },
-    {
-        title: "Contactenos",
-        link: "/#"
-    }
-]
+  { id: 1, title: "Tienda", link: "/#" },
+  { id: 2, title: "Categorias", link: "/#" },
+  { id: 3, title: "Nosotros", link: "/#" },
+  { id: 4, title: "Contactenos", link: "/#" },
+];
 const Footer = () => {
   return (
     <div style={StyleFooter}>
         <div className="container styleFooter">
-            <div className="flex justify-between px-{30px}">
+            <div className="flex flex-col md:flex-row justify-between px-[30px] text-center">
                 <div>
                     <h2 className="font-bold">Accesos directos</h2>
                     <ul className="flex flex-col gap-3">
                         {FooterLinks.map((link)=>(
-                            <li>
+                            <li key={link.id}>
                                 <a href={link.link}>{link.title}</a>
                             </li>
                         ))}
                     </ul>
                 </div>
-                <div className="text-center">
+                <div>
                     <h1 className="font-bold">Siguenos</h1>
                     <h2>en nuestras redes sociales</h2>
                     <div className="flex gap-3 justify-center pt-6">

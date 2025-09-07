@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
+import { CartProvider } from "./context/CartContext";
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Popup from './components/Popup/Popup.jsx';
 import Home from './pages/Home.jsx';// Asegúrate de renombrar el archivo con mayúscula
 import Store from './pages/Store.jsx'; 
+import Cart from "./pages/Cart.jsx";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -33,17 +35,18 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <CartProvider>
     <Navbar setSearchTerm={setSearchTerm} />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
       <Route path="/store" element={<Store searchTerm={searchTerm}/>} />
+      <Route path="/cart" element={<Cart />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
     <Footer />
     <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> 
-  </>
+  </CartProvider>
   );
 };
 
