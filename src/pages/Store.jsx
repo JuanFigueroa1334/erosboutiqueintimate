@@ -2,34 +2,7 @@ import { useLocation } from "react-router-dom";
 import React, { useState, useEffect  } from 'react';
 import { useCart } from "../context/CartContext";
 //categoria sexo-oral
-import Img1 from "../assets/img/CategoriasProduct/sexo-oral/cherry.webp";
-import Img2 from "../assets/img/CategoriasProduct/sexo-oral/concha.webp";
-import Img3 from "../assets/img/CategoriasProduct/sexo-oral/garganta-sen-intimo.jpg";
-import Img4 from "../assets/img/CategoriasProduct/sexo-oral/gomas.webp";
-import Img5 from "../assets/img/CategoriasProduct/sexo-oral/sen-intimo.jpg";
-
-
-// Ejemplo de productos (puedes ampliar esta lista)
-const sampleProducts = [
-    //categoria sexo-oral
-    { id: 1, name: 'Gummies Vi King Cherry', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
-    price: '30.000', image: Img1 },
-    { id: 2, name: 'Concha Gummies Vi King', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
-    price: '10.000', image: Img2 },
-    { id: 3, name: 'Garganta Profunda Desensibilizante para Sexo Oral x 15 ml by Sen întimo', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
-    price: '36.900', image: Img3 },
-    { id: 4, name: 'Anillos Donas x 3 Ud Gummies Vi King Cherry', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
-    price: '30.000', image: Img4 },
-    { id: 5, name: 'Chocolate Body Paint x 30 ml by Sen Intimo', category:'Lubricantes', subcategory:'sexo-oral', description: '', 
-    price: '25.900', image: Img5 },
-     //categoria saborizados
-    { id: 1, name: 'Lubricante Íntimo Cafe Moka Sensación Caliente x 30 ml by Sen Íntimo', category:'Lubricantes', subcategory:'saborizados', description: '', 
-    price: '24.900', image: Img1 },
-    { id: 1, name: '', category:'Lubricantes', subcategory:'saborizados', description: '', 
-    price: '24.900', image: Img1 },
-    
-  
-];
+import { sampleProducts } from "../data/Products.js";
 
 
 const Store = ({ searchTerm }  ) => {
@@ -49,7 +22,7 @@ const Store = ({ searchTerm }  ) => {
 
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 10;
+  const productsPerPage = 52;
 
   const filteredProducts = sampleProducts.filter(product => {
     // Filtrado por categoría
@@ -137,34 +110,45 @@ const Store = ({ searchTerm }  ) => {
 
           {/* Paginación */}
           {totalPages > 1 && (
-            <div className="flex justify-center mt-6 gap-2">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="px-3 py-1 border rounded hover:bg-gray-200 disabled:opacity-50"
-              >
-                Anterior
-              </button>
-
-              {[...Array(totalPages)].map((_, i) => (
+            <div className="flex justify-center mt-6">
+              <div className="flex gap-2 overflow-x-auto max-w-full px-4 py-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent rounded-md">
+                
+                {/* Botón Anterior */}
                 <button
-                  key={i}
-                  onClick={() => handlePageChange(i + 1)}
-                  className={`px-3 py-1 border rounded hover:bg-pink-100 ${currentPage === i + 1 ? 'bg-pink-600 text-white' : ''}`}
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="px-3 py-1 border rounded hover:bg-gray-200 disabled:opacity-50 shrink-0"
                 >
-                  {i + 1}
+                  Anterior
                 </button>
-              ))}
 
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="px-3 py-1 border rounded hover:bg-gray-200 disabled:opacity-50"
-              >
-                Siguiente
-              </button>
+                {/* Números de página con scroll */}
+                <div className="flex gap-2">
+                  {[...Array(totalPages)].map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handlePageChange(i + 1)}
+                      className={`px-3 py-1 border rounded hover:bg-pink-100 shrink-0 ${
+                        currentPage === i + 1 ? 'bg-pink-600 text-white' : ''
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Botón Siguiente */}
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="px-3 py-1 border rounded hover:bg-gray-200 disabled:opacity-50 shrink-0"
+                >
+                  Siguiente
+                </button>
+              </div>
             </div>
           )}
+
         </div>
       </div>
     </div>
