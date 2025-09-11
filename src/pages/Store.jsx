@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import React, { useState, useEffect  } from 'react';
 import { useCart } from "../context/CartContext";
 //categoria sexo-oral
-import { sampleProducts } from "../data/Products.js";
+import { sampleProducts } from "../data/products.js";
 
 
 const Store = ({ searchTerm }  ) => {
