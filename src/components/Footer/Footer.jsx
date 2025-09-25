@@ -3,6 +3,7 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedin,
+  FaTiktok,
   FaLocationArrow,
   FaMobileAlt,
 } from "react-icons/fa";
@@ -35,14 +36,14 @@ const Footer = () => {
                     <h1 className="font-bold">Siguenos</h1>
                     <h2>en nuestras redes sociales</h2>
                     <div className="flex gap-3 justify-center pt-6">
-                        <a href="#">
+                        <a href="https://www.instagram.com/erosboutiqueintimate?igsh=MTBkbzEzaDRwYW44bg==">
                             <FaInstagram className="text-3xl" />
                         </a>
-                        <a href="#">
+                        <a href="https://www.instagram.com/erosboutiqueintimate?igsh=MTBkbzEzaDRwYW44bg==">
                             <FaFacebook className="text-3xl" />
                         </a>
                         <a href="#">
-                            <FaLinkedin className="text-3xl" />
+                            <FaTiktok className="text-3xl" />
                         </a>
                     </div>
                 </div>
@@ -50,14 +51,14 @@ const Footer = () => {
                     <h2 className="font-bold">Servivio al Cliente</h2>
                     <div className="flex flex-col gap-3">
                         <a href="">Garantías y Devoluciones</a>
-                        <a href="">Políticas de Privacidad</a>
+                        <a href="/Politicas-Tratamiento-de-Datos">Políticas de Tratamiento <br/> de Datos Personales</a>
                         <a href="">Envíos discretos</a>
                     </div>
                 </div>
             </div>
         </div>            
         <div className="text-center py-8"> 
-            <p>Eros Intimate Boutique | erosintimateboutique@gmail.com | +57 3241505065</p>
+            <p>Eros Intimate Boutique | contacto@erosboutiqueintimate.com | +57 300 8545116</p>
         </div>
     </div>
   )

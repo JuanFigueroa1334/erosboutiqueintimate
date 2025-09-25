@@ -10,11 +10,9 @@
 }
 
 body {
-  font-family: 'Cormorant Garamond', serif;
   background-color: #fff4f4;
 }
 .font-bold{
-  font-family: 'Cormorant Garamond', serif;
 }
 
 .bg-rosado-envio {
@@ -37,9 +35,7 @@ body {
   padding-bottom: 60px;
 }
 .containerPopup{
-  width: 480px;
-  height: 350px;
-  background-image: url(assets/img/logo_v2.png);
+  background-color: #0c0c0c;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -79,3 +75,21 @@ body {
 .divspace-between{
   justify-content: space-between;
 }
+.sty-Parpop{
+  color: #F5F5F5;
+  font-size: 20px;
+}
+.sty-h2pop{
+  color: #F5F5F5;
+  font-size: 25px;
+}
+
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+

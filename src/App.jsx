@@ -5,9 +5,11 @@ import { CartProvider } from "./context/CartContext";
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Popup from './components/Popup/Popup.jsx';
+import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton.jsx'; 
 import Home from './pages/Home.jsx';// Asegúrate de renombrar el archivo con mayúscula
 import Store from './pages/Store.jsx'; 
 import Cart from "./pages/Cart.jsx";
+import Politicas_Datos_Personales from './pages/Politicas_Datos_Personales.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -28,9 +30,9 @@ const App = () => {
     if (!popupShown) {
       setOrderPopup(true);
       sessionStorage.setItem("popupShown", "true");
-      setTimeout(() => {
-        setOrderPopup(false);
-      }, 3000);
+      //setTimeout(() => {
+        //setOrderPopup(false);
+      //}, 3000);
     }
   }, []);
 
@@ -43,7 +45,9 @@ const App = () => {
       <Route path="/store" element={<Store searchTerm={searchTerm}/>} />
       <Route path="/cart" element={<Cart />} />
       <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="/Politicas-Tratamiento-de-Datos" element={<Politicas_Datos_Personales/>}/>
     </Routes>
+     <WhatsAppButton />
     <Footer />
     <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> 
   </CartProvider>

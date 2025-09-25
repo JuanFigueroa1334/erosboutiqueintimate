@@ -13,7 +13,7 @@ import Imgsldr5 from "../../assets/img/imgsHome/img-sldr-5.webp";
 const products = [
   {
     name: "Lencerias",
-    description: "Este es el primer producto con una breve.",
+    description: "Resalta tu belleza con elegancia y sensualidad",
     images: [
       bondage_1,
       bondage_2,
@@ -22,7 +22,7 @@ const products = [
   },
   {
     name: "Vibradores",
-    description: "Este es el segundo producto con una breve descripción.",
+    description: "Descubre el placer que mereces, a tu manera.",
     images: [
       Imgsldr1,
       Imgsldr2,

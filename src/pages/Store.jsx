@@ -85,17 +85,20 @@ const Store = ({ searchTerm }  ) => {
             {currentProducts.map(product => (
               <div
                 key={product.id}
-                className="card-product border border-gray-200 shadow-md rounded-[20px] p-3 flex flex-col items-center text-center bg-white transition hover:shadow-lg"
+                className="image-wrapper card-product border border-gray-200 shadow-md rounded-[20px] p-3 flex flex-col items-center text-center bg-white transition hover:shadow-lg"
               >
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-[250px] object-cover rounded-md mb-4"
+                  className="product-image"
                 />
+
                 <div className="mb-2">
                   <h1 className="text-lg font-bold">{product.name}</h1>
                   <p className="text-sm text-gray-600">{product.description}</p>
-                  <p className="text-md font-semibold mt-2 text-red-600">${product.price}</p>
+                  <p className="text-md font-semibold mt-2 text-red-600">
+                    {new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP" }).format(product.price)}
+                  </p>
                 </div>
                 
                 <button
