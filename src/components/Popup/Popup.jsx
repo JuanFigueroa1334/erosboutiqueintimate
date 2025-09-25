@@ -90,13 +90,6 @@ const Popup = ({ orderPopup, setOrderPopup }) => {
           </div>
         </div>
       )}
-
-      {/* Modal de verificación de edad */}
-      {!mayorEdad && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black/95 flex flex-col items-center justify-center text-white z-[10000]">
-
-        </div>
-      )}
     </>
   );
 };
