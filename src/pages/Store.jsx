@@ -11,6 +11,8 @@ const Store = ({ searchTerm }  ) => {
   const queryParams = new URLSearchParams(location.search);
   const selectedCategory = queryParams.get("category");
   const selectedSubCategory = queryParams.get("subcategory");
+  const [addedProduct, setAddedProduct] = useState(null);
+
 
   useEffect(() => {
      if (searchTerm && !selectedCategory && !selectedSubCategory) {
@@ -54,6 +56,10 @@ const Store = ({ searchTerm }  ) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
+  };
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setAddedProduct(product);
   };
 
   return (
@@ -102,7 +108,7 @@ const Store = ({ searchTerm }  ) => {
                 </div>
                 
                 <button
-                onClick={() => addToCart(product)}
+                onClick={() => {handleAddToCart(product);}}
                 className="mt-auto bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition"
                 >
                 Agregar al carrito
@@ -110,6 +116,30 @@ const Store = ({ searchTerm }  ) => {
               </div>
             ))}
           </div>
+          {addedProduct && (
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm w-full">
+                <p className="text-lg font-semibold mb-4">
+                  El producto <span className="text-pink-600">{addedProduct.name}</span> ha sido agregado a tu carrito.
+                </p>
+                <div className="flex justify-center gap-4">
+                  <button
+                    onClick={() => setAddedProduct(null)}
+                    className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                  >
+                    Seguir comprando
+                  </button>
+                  <a
+                    href="/cart"
+                    className="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700"
+                  >
+                    Ir al carrito
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
 
           {/* Paginación */}
           {totalPages > 1 && (

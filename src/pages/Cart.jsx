@@ -4,6 +4,24 @@ import { useCart } from "../context/CartContext";
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, total } = useCart();
 
+  const handleCheckout = () => {
+    const phoneNumber = "573008545116"; // <-- cambia por tu número con código país (ej: Colombia 57)
+    
+    // Construir mensaje
+    let message = "*Buenas tardes, Nuevo pedido desde la tienda ONLINE*\n\n";
+    cart.forEach((item) => {
+      message += `• ${item.name} : ${item.quantity} x $${item.price.toLocaleString("es-CO")}\n`;
+    });
+    message += `\n*TOTAL:* $${total.toLocaleString("es-CO")}\n\n`;
+    message += "Por favor confirmar el pedido!!!";
+
+    // Codificar mensaje para URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Abrir WhatsApp
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+  };
+
   return (
     <div className="container mx-auto p-5">
       <h1 className="text-2xl font-bold mb-4">🛒 Tu Carrito</h1>
@@ -32,8 +50,9 @@ const Cart = () => {
 
           <div className="text-right mt-4">
             <h2 className="text-xl font-bold">Total: ${total.toLocaleString("es-CO")}</h2>
-            <button className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-              Finalizar compra
+            <button onClick={handleCheckout} 
+                    className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                    Finalizar compra
             </button>
           </div>
         </div>
