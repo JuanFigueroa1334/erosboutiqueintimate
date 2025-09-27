@@ -105,10 +105,8 @@ const Navbar = ({setSearchTerm}) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleSearch = (e) => {
-    if (e.key === "Enter") {
       setSearchTerm(e.target.value);
       navigate("/store");
-    }
   };
   return (
     <div className="shadow-2xl relative z-40 bg-color-rosado">
@@ -131,7 +129,7 @@ const Navbar = ({setSearchTerm}) => {
                     <div className="md:flex md:items-center md:gap-3 md:justify-between">
                       <input type="text"
                       placeholder="Buscar..."
-                      onKeyDown={handleSearch}
+                      onChange={handleSearch}
                       className="w-[200px] sm:w-[200px] group-hover:w-[300px] border rounded-full border-gray-300 focus:outline-none focus:border-primary focus:border-1 focus:border-1 px-2 py-1 "/>
                       <div className="group flex items-center gap-3 divspace-between">
                         <Link to="/store">

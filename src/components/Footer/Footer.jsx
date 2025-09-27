@@ -42,7 +42,7 @@ const Footer = () => {
                         <a href="https://www.instagram.com/erosboutiqueintimate?igsh=MTBkbzEzaDRwYW44bg==">
                             <FaFacebook className="text-3xl" />
                         </a>
-                        <a href="#">
+                        <a href="https://www.tiktok.com/@erosboutiqueintim?lang=es">
                             <FaTiktok className="text-3xl" />
                         </a>
                     </div>
