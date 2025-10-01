@@ -54,7 +54,7 @@ const MenuData = [
     name: "Juguetes",
     link: "/store?category=Juguetes",
      subcategories: [
-      { name: "Vidradores", link: "/store?category=Juguetes" },
+      { name: "Vibradores", link: "/store?category=Juguetes" },
       { name: "Vidradores A control remoto", link: "/store?subcategory=vibradores-control-remoto" },
       { name: "Estimuladores Clitoriales", link: "/store?subcategory=estimuladores-clitoriales" },
       { name: "Electroestimulación", link: "/store?subcategory=Electroestimulacion" },
