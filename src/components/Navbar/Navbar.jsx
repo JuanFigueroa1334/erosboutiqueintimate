@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo_v4.png"
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from 'react-router-dom';
-import { ShoppingBag, ShoppingCart } from "lucide-react";
+import { ShoppingBag, ShoppingCart, LogIn } from "lucide-react";
 import { Menu, X } from "lucide-react";
 
 const MenuData = [
@@ -142,6 +142,10 @@ const Navbar = ({setSearchTerm}) => {
                               {cart.length}
                             </span>
                           )}
+                        </Link>
+                        {/* Nuevo botón de Login */}
+                        <Link to="/login">
+                          <LogIn size={24} />
                         </Link>
                         {/* Botón hamburguesa (solo en móviles) */}
                         <button

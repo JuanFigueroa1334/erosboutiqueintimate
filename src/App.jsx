@@ -12,7 +12,18 @@ import Cart from "./pages/Cart.jsx";
 import Politicas_Datos_Personales from './pages/Politicas_Datos_Personales.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+//login
+import Login from "./pages/Login";
+import AdminUsers from "./pages/AdminUsers";
+import { AuthProvider, AuthContext } from "./context/AuthContext";
 
+const ProtectedRoute = ({ children }) => {
+  const { user } = React.useContext(AuthContext);
+  if (!user || user.perfil !== "Admin") {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+}; 
 const App = () => {
   const [orderPopup, setOrderPopup] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,20 +48,31 @@ const App = () => {
   }, []);
 
   return (
-    <CartProvider>
-    <Navbar setSearchTerm={setSearchTerm} />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/store" element={<Store searchTerm={searchTerm}/>} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-      <Route path="/Politicas-Tratamiento-de-Datos" element={<Politicas_Datos_Personales/>}/>
-    </Routes>
-     <WhatsAppButton />
-    <Footer />
-    <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> 
-  </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+      <Navbar setSearchTerm={setSearchTerm} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute>
+              <AdminUsers />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/home" element={<Home />} />
+        <Route path="/store" element={<Store searchTerm={searchTerm}/>} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/Politicas-Tratamiento-de-Datos" element={<Politicas_Datos_Personales/>}/>
+      </Routes>
+      <WhatsAppButton />
+      <Footer />
+      <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> 
+    </CartProvider>
+    </AuthProvider>
   );
 };
 
