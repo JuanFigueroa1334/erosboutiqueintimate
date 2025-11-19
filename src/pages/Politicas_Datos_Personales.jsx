@@ -21,7 +21,7 @@ const Politicas_Datos_Personales = () => {
         <br />
         <strong>Correo electrónico:</strong> contacto@erosboutique.com
         <br />
-        <strong>Teléfono:</strong> (+57) 000 000 0000
+        <strong>Teléfono:</strong> (+57) 324 150 50 65
         <br />
         <strong>Dirección:</strong> Bogotá, Colombia
       </p>
@@ -64,7 +64,7 @@ const Politicas_Datos_Personales = () => {
         <br />
         <strong>Correo electrónico:</strong> contacto@erosboutique.com
         <br />
-        <strong>Teléfono:</strong> (+57) 000 000 0000
+        <strong>Teléfono:</strong> (+57) 324 150 50 65
         <br />
         <strong>Dirección:</strong> Bogotá, Colombia
       </p>
