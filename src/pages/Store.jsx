@@ -3,6 +3,7 @@ import React, { useState, useEffect  } from 'react';
 import { useCart } from "../context/CartContext";
 //categoria sexo-oral
 import { sampleProducts } from "../data/product_Data.js";
+import { getProductos } from "../services/productoService";
 
 
 const Store = ({ searchTerm }  ) => {
@@ -12,7 +13,7 @@ const Store = ({ searchTerm }  ) => {
   const selectedCategory = queryParams.get("category");
   const selectedSubCategory = queryParams.get("subcategory");
   const [addedProduct, setAddedProduct] = useState(null);
-
+  const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
      if (searchTerm && !selectedCategory && !selectedSubCategory) {
@@ -22,11 +23,33 @@ const Store = ({ searchTerm }  ) => {
     }
   }, [selectedCategory, selectedSubCategory, searchTerm]);
 
+  useEffect(() => {
+    const loadProducts = async () => {
+      const apiProducts = await getProductos();
+
+      const parsedApiProducts = apiProducts.map(p => ({
+        id: p.id,
+        name: p.nombre,
+        description: p.descripcion,
+        price: p.precio,
+        image: p.imagenes?.[0]?.url_imagen || "/images/default.jpg",
+        category: p.categoria || "",
+        subcategory: p.subcategoria || "",
+      }));
+
+      const merged = [...parsedApiProducts, ...sampleProducts];
+
+      setAllProducts(merged);
+    };
+
+    loadProducts();
+  }, []);
+
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 52;
 
-  const filteredProducts = sampleProducts.filter(product => {
+  const filteredProducts = allProducts.filter(product => {
     // Filtrado por categoría
     const matchCategory = selectedCategory 
         ? product.category?.toLowerCase() === selectedCategory.toLowerCase()
@@ -61,6 +84,9 @@ const Store = ({ searchTerm }  ) => {
     addToCart(product);
     setAddedProduct(product);
   };
+  if (!allProducts.length) {
+  return <p className="text-center py-10">Cargando productos...</p>;
+}
 
   return (
     <div className="p-shop pt-5 bg-white min-h-screen bg-color-rosado">

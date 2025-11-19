@@ -1,0 +1,80 @@
+.opinion-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.stars {
+  margin: 10px 0 20px;
+}
+
+.star {
+  font-size: 45px;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: #ffb700;
+}
+
+.opinion-textarea {
+  width: 80%;
+  min-height: 110px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  resize: none;
+}
+
+.char-counter {
+  margin: 5px 0 10px;
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.btn-send {
+  background-color: #1a73e8;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.opinion-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px auto;
+  width: 75%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.op-stars {
+  color: #ffb700;
+  font-size: 1.2rem;
+}
+
+.op-text {
+  margin-top: 8px;
+}
+
+.op-date {
+  font-size: 0.8rem;
+  color: gray;
+}

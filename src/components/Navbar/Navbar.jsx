@@ -1,10 +1,12 @@
-import React, { useState } from "react"; 
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo_v4.png"
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from 'react-router-dom';
-import { ShoppingBag, ShoppingCart, LogIn } from "lucide-react";
+import { ShoppingBag, ShoppingCart, LogIn, User  } from "lucide-react";
 import { Menu, X } from "lucide-react";
+import { AuthContext } from "../../context/AuthContext";
+
 
 const MenuData = [
   {
@@ -101,12 +103,16 @@ const DropdownLinks = [
   },
 ];
 const Navbar = ({setSearchTerm}) => {
+  
+  const { user, logout } = useContext(AuthContext);
+  const [menuUserOpen, setMenuUserOpen] = useState(false);
   const { cart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleSearch = (e) => {
       setSearchTerm(e.target.value);
       navigate("/store");
+      
   };
   return (
     <div className="shadow-2xl relative z-40 bg-color-rosado">
@@ -144,9 +150,60 @@ const Navbar = ({setSearchTerm}) => {
                           )}
                         </Link>
                         {/* Nuevo botón de Login */}
-                        <Link to="/login">
-                          <LogIn size={24} />
-                        </Link>
+                        {/* Si NO está logueado → mostrar icono de login */}
+                        {!user ? (
+                          <Link to="/login">
+                            <LogIn size={24} />
+                          </Link>
+                        ) : (
+                          /* Si está logueado → mostrar icono de usuario con submenu */
+                          <div className="relative">
+                            <button onClick={() => setMenuUserOpen(!menuUserOpen)} className="flex items-center">
+                              <User size={24} />
+                            </button>
+
+                            {menuUserOpen && (
+                              <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md w-40 text-sm z-50">
+                                {user.perfil === "Admin" && (
+                                  <>
+                                    <Link
+                                      to="/admin/users"
+                                      className="block px-4 py-2 hover:bg-gray-100"
+                                      onClick={() => setMenuUserOpen(false)}
+                                    >
+                                      Administración
+                                    </Link>
+                                    <Link
+                                      to="/admin/productos"
+                                      className="block px-4 py-2 hover:bg-gray-100"
+                                      onClick={() => setMenuUserOpen(false)}
+                                    >
+                                      Administración Productos
+                                    </Link>
+                                  </>
+                                )}
+                                <Link
+                                  to="/mi-cuenta"
+                                  className="block px-4 py-2 hover:bg-gray-100"
+                                  onClick={() => setMenuUserOpen(false)}
+                                >
+                                  Mi Perfil
+                                </Link>
+                                <button
+                                  className="block w-full text-left px-4 py-2 hover:bg-red-100 text-red-600"
+                                  onClick={() => {
+                                    logout();
+                                    setMenuUserOpen(false);
+                                    navigate("/"); // redirige al home
+                                  }}
+                                >
+                                  Cerrar sesión
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
                         {/* Botón hamburguesa (solo en móviles) */}
                         <button
                           className="sm:hidden block"

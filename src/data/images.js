@@ -1014,7 +1014,7 @@ export const productImages = {
     antifaz_party_eye_black: Img106,
     m_scara_bad_cat_pink: Img107,
     tapa_ojos_cherry: Img108,
-    antifaz_foxy_black: Img109,
+    antifaz_foxy_black: 'https://drive.google.com/file/d/1jhaQ4sfhheXHNHj7P8TgVyihwoxI_8Le/view?usp=drive_link',
     tapaojos_vine_rose: Img110,
     m_scara_bad_bunny_red: Img111,
     antifaz_mardi_grass_luxury: Img112,

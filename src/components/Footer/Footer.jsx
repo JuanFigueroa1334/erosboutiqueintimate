@@ -58,7 +58,7 @@ const Footer = () => {
             </div>
         </div>            
         <div className="text-center py-8"> 
-            <p>Eros Intimate Boutique | contacto@erosboutiqueintimate.com | +57 300 8545116</p>
+            <p>Eros Intimate Boutique | contacto@erosboutiqueintimate.com | +57 324 150 50 65</p>
         </div>
     </div>
   )

@@ -16,6 +16,11 @@ import 'aos/dist/aos.css';
 import Login from "./pages/Login";
 import AdminUsers from "./pages/AdminUsers";
 import { AuthProvider, AuthContext } from "./context/AuthContext";
+import Register from "./pages/Register";
+import EditUser from "./pages/EditUser.jsx";
+//productos
+import AdminProductos from "./pages/AdminProductos";
+
 
 const ProtectedRoute = ({ children }) => {
   const { user } = React.useContext(AuthContext);
@@ -62,6 +67,19 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/register" element={<Register />} />
+        <Route path="/admin/users/edit/:id" element={<EditUser />} />
+        <Route path="/mi-cuenta" element={<EditUser />} />
+
+        <Route
+          path="/admin/productos"
+          element={
+            <ProtectedRoute>
+              <AdminProductos />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/home" element={<Home />} />
         <Route path="/store" element={<Store searchTerm={searchTerm}/>} />
         <Route path="/cart" element={<Cart />} />

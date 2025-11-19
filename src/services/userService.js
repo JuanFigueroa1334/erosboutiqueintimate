@@ -14,6 +14,11 @@ export const getUsers = async () => {
   return res.json();
 };
 
+export const getUserById = async (id) => {
+  const res = await fetch(`${API_URL}/${id}`);
+  return res.json();
+};
+
 export const addUser = async (user) => {
   const res = await fetch(`${API_URL}/add`, {
     method: "POST",
